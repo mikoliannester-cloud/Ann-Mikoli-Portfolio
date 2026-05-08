@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ann Mikoli — Remote Support Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #1a2f55;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --cream: #faf9f7;
+    --warm-white: #ffffff;
+    --text-dark: #111827;
+    --text-mid: #374151;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --accent-gold: #d4a853;
+    --tag-bg: #f0fdfa;
+    --tag-border: #99f6e4;
+    --tag-text: #0f766e;
+    --card-shadow: 0 2px 16px rgba(15,31,61,0.07);
+    --card-hover: 0 8px 32px rgba(15,31,61,0.13);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15,31,61,0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-brand span { color: var(--teal-light); }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+  .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 5% 80px;
+    gap: 4rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);
+    bottom: -80px; left: 20%;
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(13,148,136,0.15);
+    border: 1px solid rgba(20,184,166,0.3);
+    color: var(--teal-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-eyebrow i { font-size: 0.7rem; }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--teal-light); font-style: italic; }
+  .hero-roles {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .role-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .hero-desc {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-ctas {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    padding: 13px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn-outline:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+  /* HERO CARD */
+  .hero-card {
+    position: relative; z-index: 2;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .profile-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(6px);
+  }
+  .profile-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--navy-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    border: 3px solid rgba(20,184,166,0.4);
+  }
+  .profile-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .profile-title {
+    font-size: 0.82rem;
+    color: var(--teal-light);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .status-row {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(13,148,136,0.15);
+    border: 1px solid rgba(20,184,166,0.25);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 1.2rem;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ade80;
+    animation: pulse 2s infinite;
+  }
+  .status-text { color: rgba(255,255,255,0.8); font-size: 0.83rem; }
+  .profile-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.3rem; font-weight: 600; color: var(--teal-light); }
+  .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--teal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 2px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about-section { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+  .about-sidebar {}
+  .value-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex; align-items: flex-start; gap: 14px;
+    transition: box-shadow 0.2s;
+  }
+  .value-card:hover { box-shadow: var(--card-hover); }
+  .value-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-light); font-size: 1rem; flex-shrink: 0;
+  }
+  .value-title { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
+  .value-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+  .about-text {}
+  .about-text p { color: var(--text-mid); margin-bottom: 1rem; font-size: 1.02rem; }
+  .about-text p:first-child { font-size: 1.12rem; color: var(--text-dark); font-weight: 400; }
+  .avail-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    margin-top: 1.6rem;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .avail-icon { color: var(--teal-light); font-size: 1.4rem; }
+  .avail-title { color: #fff; font-weight: 600; font-size: 0.95rem; }
+  .avail-sub { color: rgba(255,255,255,0.6); font-size: 0.82rem; }
+
+  /* SKILLS */
+  .skills-section { background: var(--cream); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .skill-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .skill-card:hover { box-shadow: var(--card-hover); transform: translateY(-2px); border-color: var(--teal); }
+  .skill-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal); font-size: 0.95rem; flex-shrink: 0;
+  }
+  .skill-name { font-weight: 500; font-size: 0.88rem; color: var(--text-dark); }
+
+  /* EXPERIENCE */
+  .exp-section { background: var(--warm-white); }
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 22px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .exp-dot {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-light); font-size: 1rem;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .exp-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    transition: box-shadow 0.2s;
+  }
+  .exp-card:hover { box-shadow: var(--card-hover); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 0.8rem; }
+  .exp-title { font-weight: 600; font-size: 1rem; color: var(--navy); }
+  .exp-company { font-size: 0.85rem; color: var(--teal); font-weight: 500; }
+  .exp-date {
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .exp-desc { color: var(--text-mid); font-size: 0.9rem; }
+  .exp-desc li { margin-bottom: 4px; margin-left: 1rem; }
+
+  /* PROJECTS */
+  .projects-section { background: var(--cream); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; }
+  .project-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.6rem;
+    transition: all 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { box-shadow: var(--card-hover); transform: translateY(-3px); border-color: rgba(13,148,136,0.3); }
+  .project-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-light); font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .project-title { font-weight: 600; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .project-desc { color: var(--text-muted); font-size: 0.86rem; flex: 1; margin-bottom: 1rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    font-size: 0.73rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  /* EDUCATION & CERTS */
+  .edu-section { background: var(--warm-white); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+    transition: box-shadow 0.2s;
+  }
+  .edu-card:hover { box-shadow: var(--card-hover); }
+  .edu-icon {
+    width: 44px; height: 44px; border-radius: 11px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-light); font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .edu-degree { font-weight: 600; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .edu-school { font-size: 0.85rem; color: var(--teal); font-weight: 500; margin-bottom: 0.3rem; }
+  .edu-year { font-size: 0.8rem; color: var(--text-muted); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+    transition: box-shadow 0.2s;
+  }
+  .cert-card:hover { box-shadow: var(--card-hover); }
+  .cert-icon { color: var(--teal); font-size: 1rem; flex-shrink: 0; }
+  .cert-name { font-size: 0.86rem; font-weight: 500; color: var(--text-dark); }
+  .cert-status { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* AVAILABILITY */
+  .avail-section { background: var(--navy); }
+  .avail-section .section-title { color: #fff; }
+  .avail-section .section-label { color: var(--teal-light); }
+  .avail-section .section-label::before { background: var(--teal-light); }
+  .avail-section .section-sub { color: rgba(255,255,255,0.6); }
+  .avail-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .avail-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 1.4rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .avail-card:hover { background: rgba(255,255,255,0.1); }
+  .avail-card-icon { font-size: 1.6rem; color: var(--teal-light); margin-bottom: 0.8rem; }
+  .avail-card-title { color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .avail-card-sub { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+
+  /* CONTACT */
+  .contact-section { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-info { }
+  .contact-intro { color: var(--text-mid); font-size: 1rem; margin-bottom: 2rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--teal); box-shadow: var(--card-shadow); }
+  .contact-link-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .cl-email .contact-link-icon { background: #fef3c7; color: #d97706; }
+  .cl-linkedin .contact-link-icon { background: #dbeafe; color: #1d4ed8; }
+  .cl-github .contact-link-icon { background: #f3f4f6; color: #111827; }
+  .cl-whatsapp .contact-link-icon { background: #dcfce7; color: #16a34a; }
+  .cl-portfolio .contact-link-icon { background: var(--tag-bg); color: var(--teal); }
+  .contact-link-label { font-size: 0.78rem; color: var(--text-muted); }
+  .contact-link-val { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+  .contact-message {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .contact-message h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .contact-message p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.4rem; }
+  .closing-quote {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    position: relative;
+  }
+  .closing-quote::before {
+    content: '"';
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: rgba(20,184,166,0.2);
+    position: absolute;
+    top: -10px; left: 14px;
+    line-height: 1;
+  }
+  .closing-quote p { padding-left: 1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 2rem 5%;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.82rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  footer a { color: var(--teal-light); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 5% 60px; }
+    .hero-card { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 5%; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .avail-cards { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Ann <span>Mikoli</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow"><i class="fa fa-circle-dot"></i> Available for Remote Work</div>
+    <h1>Ann<br><em>Mikoli</em></h1>
+    <div class="hero-roles">
+      <span class="role-pill">Remote Support Specialist</span>
+      <span class="role-pill">Virtual Assistant</span>
+      <span class="role-pill">Customer Support</span>
+      <span class="role-pill">OFM Support</span>
+      <span class="role-pill">Online Freelancer</span>
+    </div>
+    <p class="hero-desc">Reliable, adaptable, and communication-driven professional ready to support clients and teams across time zones — including nights and international schedules.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary"><i class="fa fa-envelope"></i> Get in Touch</a>
+      <a href="#about" class="btn-outline"><i class="fa fa-chevron-down"></i> Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="profile-card">
+      <div class="profile-avatar">AM</div>
+      <div class="profile-name">Ann Mikoli</div>
+      <div class="profile-title">Remote Support & Virtual Assistance</div>
+      <div class="status-row">
+        <div class="status-dot"></div>
+        <div class="status-text">Open to opportunities · Remote Worldwide</div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-box">
+          <div class="stat-num">14+</div>
+          <div class="stat-label">Core Skills</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">Night</div>
+          <div class="stat-label">Shift Ready</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">Global</div>
+          <div class="stat-label">Time Zones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Passionate. Reliable. Remote-Ready.</h2>
+    <div class="about-grid">
+      <div class="about-sidebar">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa fa-headset"></i></div>
+          <div>
+            <div class="value-title">Customer-First Mindset</div>
+            <div class="value-desc">Every interaction handled with professionalism and care</div>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa fa-earth-africa"></i></div>
+          <div>
+            <div class="value-title">International Ready</div>
+            <div class="value-desc">Comfortable working across cultures and time zones</div>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa fa-bolt"></i></div>
+          <div>
+            <div class="value-title">Fast Learner</div>
+            <div class="value-desc">Adapts quickly to new tools, workflows, and platforms</div>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa fa-users"></i></div>
+          <div>
+            <div class="value-title">Team Player</div>
+            <div class="value-desc">Collaborative, communicative, and goal-aligned</div>
+          </div>
+        </div>
+        <div class="avail-box">
+          <div class="avail-icon"><i class="fa fa-clock"></i></div>
+          <div>
+            <div class="avail-title">Night Shift Available</div>
+            <div class="avail-sub">19:00 – 03:00 UTC · Remote Only</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>Hi, I'm Ann Mikoli — a dedicated remote support professional with a genuine passion for online work, digital communication, and helping clients succeed. I thrive in fast-paced virtual environments where clear thinking and prompt responses make a real difference.</p>
+        <p>With a background in ICT and internet technologies, I bring both technical awareness and strong interpersonal skills to every role I take on. Whether it's handling customer inquiries through live chat, providing virtual assistance, managing social media interactions, or supporting clients on online platforms, I show up prepared and professional.</p>
+        <p>I understand that remote work demands reliability, self-discipline, and excellent communication — qualities I've developed and continue to refine. I'm comfortable working independently, managing my own schedule, and collaborating with distributed teams across the US, UK, Canada, Europe, and beyond.</p>
+        <p>I'm actively seeking remote opportunities in customer support, virtual assistance, online client management, chat support, and related fields. I'm enthusiastic, eager to grow, and committed to delivering consistent, quality work for every client and team I work with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I Bring to the Table</h2>
+    <p class="section-sub">A versatile skill set built for remote-first, client-facing roles across multiple industries.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-headset"></i></div><div class="skill-name">Customer Support</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-comments"></i></div><div class="skill-name">Live Chat Support</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-laptop-code"></i></div><div class="skill-name">Virtual Assistance</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-microphone"></i></div><div class="skill-name">Communication Skills</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-puzzle-piece"></i></div><div class="skill-name">Problem Solving</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-globe"></i></div><div class="skill-name">Internet & Web Skills</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-share-nodes"></i></div><div class="skill-name">Social Media Management</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-clock"></i></div><div class="skill-name">Time Management</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-users-gear"></i></div><div class="skill-name">Remote Team Collaboration</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-table"></i></div><div class="skill-name">Data Entry</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-envelope-open-text"></i></div><div class="skill-name">Email Handling</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-database"></i></div><div class="skill-name">CRM Tools</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-magnifying-glass"></i></div><div class="skill-name">Online Research</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-star"></i></div><div class="skill-name">OFM Support Skills</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="fa fa-handshake"></i></div><div class="skill-name">Client Relationship Mgmt</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Professional Background</h2>
+    <p class="section-sub">Hands-on experience in customer-facing and online support roles, developed through training, practice, and real project work.</p>
+    <div class="exp-timeline">
+
+      <div class="exp-item">
+        <div class="exp-dot"><i class="fa fa-headset"></i></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Customer Support Representative</div>
+              <div class="exp-company">Remote / Freelance</div>
+            </div>
+            <div class="exp-date">2023 – Present</div>
+          </div>
+          <div class="exp-desc">
+            <ul>
+              <li>Handled inbound customer inquiries via email, live chat, and messaging platforms with professionalism and efficiency.</li>
+              <li>Resolved complaints and escalations calmly and effectively, ensuring high satisfaction outcomes.</li>
+              <li>Maintained detailed records of customer interactions using CRM tools and spreadsheets.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"><i class="fa fa-comments"></i></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Remote Chat Support Agent</div>
+              <div class="exp-company">Online Platforms</div>
+            </div>
+            <div class="exp-date">2023 – Present</div>
+          </div>
+          <div class="exp-desc">
+            <ul>
+              <li>Provided real-time text-based support to customers and clients across different time zones, including night shifts.</li>
+              <li>Responded to messages quickly while maintaining quality, accuracy, and a friendly tone.</li>
+              <li>Managed multiple chat threads simultaneously with organized prioritization.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"><i class="fa fa-star"></i></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Online Client Support & Management</div>
+              <div class="exp-company">Freelance / Online Platforms</div>
+            </div>
+            <div class="exp-date">2022 – Present</div>
+          </div>
+          <div class="exp-desc">
+            <ul>
+              <li>Managed ongoing client communication and relationship-building through digital channels including messaging apps and platforms.</li>
+              <li>Handled scheduling, content coordination, and client engagement on behalf of online professionals.</li>
+              <li>Supported upselling and promotion of services through professional, value-focused messaging.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"><i class="fa fa-wifi"></i></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <div class="exp-title">Technical & Internet Assistance Support</div>
+              <div class="exp-company">Self-Directed / Community</div>
+            </div>
+            <div class="exp-date">2021 – 2023</div>
+          </div>
+          <div class="exp-desc">
+            <ul>
+              <li>Assisted peers and community members with basic internet troubleshooting, browser issues, and device connectivity.</li>
+              <li>Provided guidance on safe online practices and digital tool navigation.</li>
+              <li>Developed strong communication habits by explaining technical concepts clearly to non-technical users.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Work I'm Proud Of</h2>
+    <p class="section-sub">Selected projects showcasing technical skills, problem-solving ability, and remote-ready competencies.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa fa-ballot-check"></i></div>
+        <div class="project-title">Student Online Voting System</div>
+        <div class="project-desc">Developed a secure and user-friendly web-based voting system for Sigalagala National Polytechnic. The system enabled students to cast votes online with authentication, live tallying, and result display — reducing manual processes and improving accessibility.</div>
+        <div class="project-tags">
+          <span class="tag">Web Development</span>
+          <span class="tag">Database</span>
+          <span class="tag">UI Design</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa fa-code"></i></div>
+        <div class="project-title">Internet & Web Development Portfolio</div>
+        <div class="project-desc">A collection of web projects built as part of ICT training, including responsive web pages, basic JavaScript logic, form handling, and front-end design. Demonstrates foundational technical skills applicable to digital support roles.</div>
+        <div class="project-tags">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">ICT</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa fa-chalkboard-user"></i></div>
+        <div class="project-title">Customer Support Training Simulations</div>
+        <div class="project-desc">Completed structured simulations covering live chat support, email handling, difficult customer scenarios, and escalation procedures. Practiced response frameworks, tone calibration, and CRM documentation workflows.</div>
+        <div class="project-tags">
+          <span class="tag">Customer Service</span>
+          <span class="tag">CRM Practice</span>
+          <span class="tag">Training</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon"><i class="fa fa-satellite-dish"></i></div>
+        <div class="project-title">Remote Communication & Client Handling</div>
+        <div class="project-desc">Developed best-practice workflows for managing remote client relationships — including response templates, scheduling coordination, online chat etiquette, and professional communication across digital platforms used by international clients.</div>
+        <div class="project-tags">
+          <span class="tag">Communication</span>
+          <span class="tag">Remote Work</span>
+          <span class="tag">Client Relations</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section class="edu-section" id="education">
+  <div class="section-inner">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Learning & Qualifications</h2>
+    <p class="section-sub">Formal training combined with hands-on self-directed learning in digital, communication, and remote work skills.</p>
+    <div class="edu-grid" style="margin-bottom: 3rem;">
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fa fa-graduation-cap"></i></div>
+        <div class="edu-degree">Diploma in ICT — Internet & Web Development</div>
+        <div class="edu-school">Sigalagala National Polytechnic</div>
+        <div class="edu-year">Completed · Kenya</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fa fa-laptop"></i></div>
+        <div class="edu-degree">Remote Work & Virtual Assistance Training</div>
+        <div class="edu-school">Online Learning Platforms</div>
+        <div class="edu-year">Self-Directed · Ongoing</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fa fa-comments"></i></div>
+        <div class="edu-degree">Customer Service & Communication Skills</div>
+        <div class="edu-school">Online Courses & Workshops</div>
+        <div class="edu-year">Completed · Self-Directed</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fa fa-chart-line"></i></div>
+        <div class="edu-degree">Digital Skills & Internet Proficiency</div>
+        <div class="edu-school">ICT Training & Online Platforms</div>
+        <div class="edu-year">Ongoing Development</div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom: 1.2rem;">Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card"><i class="fa fa-certificate cert-icon"></i><div><div class="cert-name">Customer Service Certification</div><div class="cert-status">In Progress / Completed</div></div></div>
+      <div class="cert-card"><i class="fa fa-robot cert-icon"></i><div><div class="cert-name">Virtual Assistant Certification</div><div class="cert-status">In Progress / Completed</div></div></div>
+      <div class="cert-card"><i class="fa fa-wifi cert-icon"></i><div><div class="cert-name">Digital Skills Training</div><div class="cert-status">Completed</div></div></div>
+      <div class="cert-card"><i class="fa fa-house-laptop cert-icon"></i><div><div class="cert-name">Remote Work Training</div><div class="cert-status">Completed</div></div></div>
+      <div class="cert-card"><i class="fa fa-code cert-icon"></i><div><div class="cert-name">ICT & Web Development Certificate</div><div class="cert-status">Completed</div></div></div>
+      <div class="cert-card"><i class="fa fa-star cert-icon"></i><div><div class="cert-name">OFM Support & Client Management</div><div class="cert-status">Practical Experience</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVAILABILITY -->
+<section class="avail-section" id="availability">
+  <div class="section-inner">
+    <div class="section-label">Availability</div>
+    <h2 class="section-title">Ready When You Need Me</h2>
+    <p class="section-sub">Flexible, dependable, and built for remote-first work with international teams.</p>
+    <div class="avail-cards">
+      <div class="avail-card">
+        <div class="avail-card-icon"><i class="fa fa-earth-americas"></i></div>
+        <div class="avail-card-title">Remote Worldwide</div>
+        <div class="avail-card-sub">Open to global clients & teams</div>
+      </div>
+      <div class="avail-card">
+        <div class="avail-card-icon"><i class="fa fa-moon"></i></div>
+        <div class="avail-card-title">Night Shifts</div>
+        <div class="avail-card-sub">Comfortable with late hours</div>
+      </div>
+      <div class="avail-card">
+        <div class="avail-card-icon"><i class="fa fa-clock"></i></div>
+        <div class="avail-card-title">19:00 – 03:00 UTC</div>
+        <div class="avail-card-sub">Primary working window</div>
+      </div>
+      <div class="avail-card">
+        <div class="avail-card-icon"><i class="fa fa-briefcase"></i></div>
+        <div class="avail-card-title">Full or Part Time</div>
+        <div class="avail-card-sub">Freelance & contract ready</div>
+      </div>
+      <div class="avail-card">
+        <div class="avail-card-icon"><i class="fa fa-flag"></i></div>
+        <div class="avail-card-title">US · UK · CA · EU</div>
+        <div class="avail-card-sub">International employer friendly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Work Together</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="contact-intro">I'm actively looking for remote opportunities in customer support, virtual assistance, and online client management. If you're looking for a reliable, communicative, and motivated team member — I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-link cl-email">
+            <div class="contact-link-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-val">your@email.com</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="contact-link cl-linkedin">
+            <div class="contact-link-icon"><i class="fab fa-linkedin-in"></i></div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-val">linkedin.com/in/ann-mikoli</div>
+            </div>
+          </a>
+          <a href="https://github.com" target="_blank" class="contact-link cl-github">
+            <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-val">github.com/ann-mikoli</div>
+            </div>
+          </a>
+          <a href="https://wa.me/your-number" target="_blank" class="contact-link cl-whatsapp">
+            <div class="contact-link-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="contact-link-label">WhatsApp</div>
+              <div class="contact-link-val">+254 — Your Number</div>
+            </div>
+          </a>
+          <a href="#" class="contact-link cl-portfolio">
+            <div class="contact-link-icon"><i class="fa fa-globe"></i></div>
+            <div>
+              <div class="contact-link-label">Portfolio</div>
+              <div class="contact-link-val">ann-mikoli.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-message">
+        <h3>A Word From Ann</h3>
+        <p>I believe every client deserves prompt, respectful, and solutions-focused support. That's the standard I hold myself to — every day, every shift.</p>
+        <div class="closing-quote">
+          <p>Dedicated to delivering excellent online support, professional communication, and reliable remote work services for clients and teams worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Ann Mikoli · Remote Support Specialist · Built for global opportunities</p>
+  <p style="margin-top: 6px;"><a href="#about">Back to top ↑</a></p>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
